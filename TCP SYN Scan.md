@@ -7,9 +7,9 @@ A **TCP SYN scan** is one of the most common and efficient methods for **identif
 - **TCP Handshake**: Normally, when two systems communicate over TCP, they establish a connection using a three-way handshake:
 ![Alt text](https://www.hackercoolmagazine.com/wp-content/uploads/2023/09/Port_scanning_techniques_2.jpg)
 
-SYN: The client sends a SYN (synchronize) packet to the server to initiate the connection.
-SYN-ACK: If the server is listening on the port (open), it responds with a SYN-ACK (synchronize-acknowledge).
-ACK: The client acknowledges the SYN-ACK, and the connection is established.
+ 1. SYN: The client sends a SYN (synchronize) packet to the server to initiate the connection.
+ 2. SYN-ACK: If the server is listening on the port (open), it responds with a SYN-ACK (synchronize-acknowledge).
+ 3. ACK: The client acknowledges the SYN-ACK, and the connection is established.
 In a TCP SYN scan, the client (the scanner) only sends the first SYN packet and doesn’t complete the full handshake, making it faster and stealthier than a full connection scan.
 
 How a TCP SYN Scan Works
