@@ -1,6 +1,6 @@
 ## Step 1: Identifying Libraries
 
-##Python libraries for this project:
+## Python libraries for this project:
 
 | **Назва бібліотеки (UA)** | **Призначення (UA)**                                                            | **Purpose (EN)**                                                          |
 |---------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------|
@@ -12,3 +12,60 @@
 | `logging`                 | Для ведення логів сканування, включаючи помилки і результати.                   | Used for logging scan results and errors.                                 |
 
 
+## Step 2: Learning ARP and ICMP Protocols
+
+- ARP (Address Resolution Protocol) helps resolve IP addresses to MAC addresses.
+- ICMP (Internet Control Message Protocol) is used to send error messages or perform simple network diagnostics, like pinging.
+
+Both ARP and ICMP protocols are essential for network discovery and scanning in a port scanning context. Below is an expanded explanation of these protocols, with a focus on why it’s important to perform these scans within your own subnet.
+
+### ARP (Address Resolution Protocol)
+
+#### What is ARP?
+ARP is a protocol used to map a device’s **IP address** (Layer 3 of the OSI model) to its **MAC address** (Layer 2 of the OSI model). When a device wants to communicate with another device on the same network, it uses ARP to discover the MAC address corresponding to the target IP address.
+
+#### Why ARP is Used in Scanning
+ARP is commonly used in local network scans to discover active devices by identifying their IP and MAC addresses. This is often a first step in network discovery, helping you find live hosts before conducting deeper port scans.
+
+When performing a port scan within a subnet, ARP can reveal which devices are currently online and reachable, allowing you to focus your port scans on those active devices.
+
+#### Why ARP is Limited to Your Subnet
+ARP is a **Layer 2 protocol**, meaning it only operates within a local network or subnet. ARP requests are broadcasted to all devices in the same subnet, asking "Who has this IP address?" Only devices in the subnet can respond, making it impossible to use ARP across subnets or the internet.
+
+#### Why It's Important to Use ARP in Your Own Subnet:
+- **Efficiency**: ARP only works within the local subnet, so you don’t waste time or resources trying to scan outside of it. It provides quick results, identifying devices within the same subnet without overwhelming the network.
+  
+- **Security and Privacy**: ARP scans are confined to the local network, which ensures you don’t inadvertently perform scans on networks you don’t have permission to scan. ARP cannot traverse routers, preventing accidental scanning of external or private networks.
+
+#### ARP Scanning in Port Scanners
+ARP scanning helps find all devices on the local subnet. By identifying devices via their MAC and IP addresses, you know which hosts are online and available for further port scanning.
+
+This is particularly useful when building a port scanner, as you can avoid scanning IPs that aren’t active.
+
+#### Example of ARP Usage in Scanning:
+You send an ARP request saying, "Who has IP address 192.168.1.5?" If a device in the subnet has that IP, it will reply with its MAC address. You now know that this device is active, and you can proceed with port scanning.
+
+### ICMP (Internet Control Message Protocol)
+
+#### What is ICMP?
+ICMP is a protocol used for sending error messages and operational information, such as when a service is unavailable or when devices need to check if a host is reachable. One of the most common uses of ICMP is the **Ping** command, which sends an **ICMP Echo Request** to a target, and if the target is online, it replies with an **ICMP Echo Reply**.
+
+#### Why ICMP is Used in Scanning
+ICMP is widely used in **ping sweeps** to identify which devices are online by sending ICMP Echo Requests and listening for responses. If a device responds, it’s likely reachable and active.
+
+Using ICMP allows you to quickly determine which devices are up and running, without having to scan their ports immediately.
+
+#### ICMP Scanning Within a Subnet
+ICMP can work across subnets, unlike ARP, because it operates at **Layer 3 (Network Layer)**, allowing pings to cross routers. However, it’s important to limit ICMP scanning to your own subnet for the following reasons:
+
+- **Network Restrictions**: Many networks outside of your control may block ICMP traffic (ping requests) to prevent network mapping or abuse, which is why scanning within your own subnet is more reliable. ICMP requests within a subnet are less likely to be blocked by routers, firewalls, or security systems.
+
+- **Security and Ethical Considerations**: Scanning networks without permission, especially with ICMP, could be considered malicious or intrusive. Keeping your scans to your own subnet ensures that you remain compliant with ethical standards and network policies.
+
+- **Detecting Unwanted Activity**: Many organizations monitor ICMP traffic for security reasons. If you perform scans outside your subnet, you might inadvertently trigger security alerts.
+
+#### ICMP Scanning in Port Scanners
+Before you conduct a detailed port scan, you might use ICMP to **ping** all devices in the local subnet and check their availability. If a device responds to an ICMP Echo Request, it’s online, and you can proceed with port scanning.
+
+#### Example of ICMP Usage in Scanning:
+You ping all devices in the subnet with:
