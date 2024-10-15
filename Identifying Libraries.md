@@ -10,5 +10,5 @@
 | `threading`               | Забезпечує багатопоточність, що дозволяє виконувати одночасне сканування портів.| Enables multithreading for concurrent port scanning.                      |
 | `asyncio`                 | Альтернатива для асинхронного виконання сканування, без використання потоків.   | Alternative for asynchronous scanning execution, without using threads.   |
 | `logging`                 | Для ведення логів сканування, включаючи помилки і результати.                   | Used for logging scan results and errors.                                 |
-
+| `ipaddress´               |                                    |                                            |
 
