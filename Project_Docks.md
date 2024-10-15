@@ -69,3 +69,6 @@ Before you conduct a detailed port scan, you might use ICMP to **ping** all devi
 
 #### 5. Example of ICMP Usage in Scanning:
 You ping all devices in the subnet with:
+ping 192.168.1.0/24
+
+Devices that are online will respond with an **ICMP Echo Reply**, indicating that they are reachable and ready for further investigation.
