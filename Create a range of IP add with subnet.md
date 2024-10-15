@@ -17,5 +17,4 @@ To create a range of IP addresses programmatically in Python for scanning purpos
 - **Efficient Scanning**: Instead of scanning random IPs, generating a range within your local subnet ensures that you target the relevant devices on the same network.
 
 ### ***Conclusion***
-By creating a range of IP addresses within your subnet, you can efficiently scan devices on your local network. Tools like 
---ipaddress-- in Python make it easy to generate valid IP ranges and apply them to your network scanning tasks.
+By creating a range of IP addresses within your subnet, you can efficiently scan devices on your local network. Tools like ***ipaddress*** in Python make it easy to generate valid IP ranges and apply them to your network scanning tasks.
