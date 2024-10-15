@@ -1,9 +1,9 @@
 ### Step 3: Learning TCP SYN Scans
 
-A ** TCP SYN scan ** is one of the most common and efficient methods for ** identifying open ports ** on a target machine. It’s widely used because of its speed and stealth compared to other port scanning techniques. Here's a detailed explanation:
+A **TCP SYN scan** is one of the most common and efficient methods for **identifying open ports** on a target machine. It’s widely used because of its speed and stealth compared to other port scanning techniques. Here's a detailed explanation:
 
 ### 1. What is TCP SYN Scan?
-- Purpose: A TCP SYN scan is used to determine the status of a port on a target device—whether it is ** open, closed, or filtered ** . This scan is part of the three-way TCP handshake process, but it doesn’t complete the handshake, which is why it's often referred to as a ** half-open scan ** .
+- Purpose: A TCP SYN scan is used to determine the status of a port on a target device—whether it is **open, closed,** or **filtered** . This scan is part of the three-way TCP handshake process, but it doesn’t complete the handshake, which is why it's often referred to as a **half-open scan** .
 - TCP Handshake: Normally, when two systems communicate over TCP, they establish a connection using a three-way handshake:
 SYN: The client sends a SYN (synchronize) packet to the server to initiate the connection.
 SYN-ACK: If the server is listening on the port (open), it responds with a SYN-ACK (synchronize-acknowledge).
