@@ -1,0 +1,20 @@
+### Step 4: Creating a Range of IP Addresses within Your Local Network Subnet
+
+When performing network scanning, you may want to scan a range of IP addresses to discover which devices are active on your local network. In this step, you will learn how to generate and define a range of IP addresses within your subnet for scanning.
+
+### 1. Understanding IP Address Ranges
+In a local network, devices are assigned IP addresses within a particular range, often based on the subnet mask. For example, if your network uses the IP address range 192.168.1.0/24, this means:
+
+- The subnet is 192.168.1.0/24 (indicating 256 addresses from 192.168.1.0 to 192.168.1.255).
+- You can scan devices between 192.168.1.1 and 192.168.1.254 (since .0 is the network address, and .255 is reserved for broadcast).
+
+### 2. Generating a Range of IP Addresses
+To create a range of IP addresses programmatically in Python for scanning purposes, you can use libraries such as ***ipaddress*** to help with subnet calculations.
+
+### 3. Why Scanning a Range is Important
+- **Network Discovery**: Scanning a range of IP addresses helps identify all active devices on the network.
+- **Security Audits**: You can use this method to ensure that no unauthorized devices are connected to the network.
+- **Efficient Scanning**: Instead of scanning random IPs, generating a range within your local subnet ensures that you target the relevant devices on the same network.
+
+### ***Conclusion***
+By creating a range of IP addresses within your subnet, you can efficiently scan devices on your local network. Tools like ---ipaddress--- in Python make it easy to generate valid IP ranges and apply them to your network scanning tasks.
