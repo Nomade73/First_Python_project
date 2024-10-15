@@ -1,6 +1,6 @@
 ### Step 1: Identifying Libraries
 
-##Python libraries:
+## Python libraries:
 
 socket: To create connections and interact with ports.
 scapy: For ARP and ICMP scanning, and for crafting network packets.
