@@ -115,7 +115,7 @@ Review the code for vulnerabilities that could allow input validation attacks (e
 ## 10. Properly Documented Code
 The code will be well-documented with comments explaining each function and line of code.
 
-```
+```python
 import socket
 
 # Function to scan ports 
