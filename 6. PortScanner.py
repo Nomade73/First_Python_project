@@ -1,26 +1,79 @@
 import socket
+import logging
+from datetime import datetime
+import time
 
-# Function to scan ports 
-def scan_ports(host, start_port, end_port):
-    print(f"Scanning ports {start_port} to {end_port} on {host}...")
 
-    # Loop through the specified range of ports
-    for port in range(start_port, end_port + 1):
-        # Create a new socket
+#� Setup Logging
+logging.basicConfig(filename='port_scanner.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+def scan_port(host, port):
+    try:
+        # Create a new socket for each port
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.settimeout(0.1) # Set a timeout for each connection attempt
-            result = s.connect_ex((host, port)) # Try to connect to the port 
-
-            # If the connection was successful 
-            if result ==  0:
-                print(f"Port {port}: OPEN")
+            s.settimeout(1) #Set timeout to avoid hanging indefinitely
+            result = s.connect_ex((host, port))
+            if result == 0:
+                return True #Port is open
             else:
-                print(f"Port {port}: CLOSED")
+                return False #Port is closed
+    except socket.gaierror:
+        logging.error(f"Hostname could not be resolved: {host}")
+        print(f"Hostname could not be resolved: {host}")
+        return None 
+    except socket.error:
+        logging.error(f"Couldn't connect to server: {host}")
+        print(f"Couldn't connect to server: {host}")
+        return None 
+    
+def port_scanner(host, start_port, end_port, rate_limit=0.5):
+    open_ports = []
+    logging.info(f"Starting scan on host: {host} from port {start_port} to {end_port}")
+    print(f"Scanning {host} from port {start_port} to {end_port}...")
 
+    # Input Validation
+    if not (0 <= start_port <= 65535) or not (0 <= end_port <= 65535):
+        print("Invalid port range. Ports must be between 0 and 65535.")
+        return
+    
+    if start_port > end_port:
+        print("Invalid range. Start port should be lower than end port.")
+        return 
+    
+    for port in range(start_port, end_port +1):
+        if scan_port(host, port):
+            print(f"Port {port} is open")
+            open_ports.append(port)
+        else:
+            print(f"Port {port} is closed")
+        time.sleep(rate_limit) #Rate limiting to avoid excessive scanning
 
+    logging.info(f"Scan complete. Open ports: {open_ports}")
+    return open_ports
+
+# Main execution
 if __name__ == "__main__":
-    #Scan localhost for ports in the range 1-1024
-    host = "127.0.0.1"
-    start_port = 500
-    end_port = 1024
-    scan_ports(host, start_port, end_port)
+    target_host = input("Enter the host to scan:")
+
+    try:
+        # Validate IP address format or domain name
+        socket.gethostbyname(target_host)
+    except socket.gaierror:
+        print("Invalid host. Please enter a valid IP address or domain.")
+        exit(1)
+    
+    try:
+        start_port = int(input("Enter the start port: "))
+        end_port = int(input("Enter the end port"))
+    except ValueError:
+        print("Port numbers must be integers.")
+        exit(1)
+
+    start_time = datetime.now()
+    open_ports = port_scanner(target_host, start_port, end_port, rate_limit=0.5)
+    end_time = datetime.now()
+
+    print(f"\nScanning completed in {end_time - start_time}. Open ports: {open_ports}")
+    logging.info(f"Scan duration:  {end_time - start_time}")
