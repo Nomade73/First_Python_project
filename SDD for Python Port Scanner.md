@@ -94,6 +94,7 @@ The system should handle various exceptions that might occur during scanning:
 ### 7.1 Test Environment
 **Localhost**: The scanner will be tested on 127.0.0.1 to ensure it can detect open ports on the local machine.
 **Remote VM Testing**: Two virtual machines will be set up in the 192.168.100.0/24 subnet. The scanner will be tested on one VM scanning the other to ensure that remote scanning is functional.
+
 ### 7.2 Test Cases
 **Localhost Scan**: Scan the localhost IP (127.0.0.1) for ports in the range 500-1024. Verify that open ports are accurately detected.
 **Remote Scan**: Scan the remote host within the VM subnet for open ports in the same range. Ensure that the system correctly identifies open and closed ports on the remote machine.
@@ -154,4 +155,4 @@ if __name__ == "__main__":
 ```
 
 ### 11. Conclusion
-This SDD outlines the design and functionality of a Python-based port scanner. The system is designed to scan ports efficiently and safely, with built-in error handling and ethical considerations. The project also includes potential enhancements such as rate limiting and logging for better performance and security. Testing will be conducted in a controlled environment to ensure compliance with ethical standards.
+This SDD outlines the design and functionality of a Python-based port scanner. The system is designed to scan ports efficiently and safely, with built-in error handling and ethical considerations. The project also includes potential enhancements such as rate limiting and logging for better performance and security. Testing will be conducted in a controlled environment with VMs to ensure compliance with ethical standards.
