@@ -2,10 +2,14 @@ import socket
 import logging
 from datetime import datetime
 import time
+import re
 
 # Setup logging
 logging.basicConfig(filename='port_scanner.log', level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Regex pattern for a valid IPv4 address
+ipv4_pattern = re.compile(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
 
 def scan_port(host, port):
     try:
@@ -57,7 +61,12 @@ def port_scanner(host, start_port, end_port, rate_limit=0.5):
 
 # Main execution
 if __name__ == "__main__":
-    target_host = input("Enter the host to scan: ")
+    target_host = input("Enter the host to scan (IPv4): ")
+
+     # Check if the entered host is a valid IPv4 address
+    if not ipv4_pattern.match(target_host):
+        print("Invalid IPv4 address format. Please enter a valid IPv4 address.")
+        exit(1)
     
     try:
         # Validate IP address format or domain name
