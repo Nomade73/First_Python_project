@@ -3,6 +3,8 @@ import logging
 from datetime import datetime
 import time
 import re
+import threading 
+
 
 # Setup logging
 logging.basicConfig(filename='port_scanner.log', level=logging.INFO, 
@@ -11,7 +13,10 @@ logging.basicConfig(filename='port_scanner.log', level=logging.INFO,
 # Regex pattern for a valid IPv4 address
 ipv4_pattern = re.compile(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
 
-def scan_port(host, port):
+
+def scan_port(host, port, open_ports):
+
+
     try:
         # Create a new socket for each port
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -34,8 +39,11 @@ def scan_port(host, port):
         print(f"Couldn't connect to server: {host}")
         return None
 
-def port_scanner(host, start_port, end_port, rate_limit=0.5):
+def port_scanner(host, start_port, end_port):
+    # Scans ports within a specified range using multi-threading.
     open_ports = []
+    threads = []
+    
     logging.info(f"Starting scan on host: {host} from port {start_port} to {end_port}")
     print(f"Scanning {host} from port {start_port} to {end_port}...")
     
@@ -48,13 +56,16 @@ def port_scanner(host, start_port, end_port, rate_limit=0.5):
         print("Invalid range. Start port must be less than or equal to end port.")
         return
 
+    # Create a thread for each port scan
     for port in range(start_port, end_port + 1):
-        if scan_port(host, port):
-            print(f"Port {port} is open")
-            open_ports.append(port)
-        else:
-            print(f"Port {port} is closed")
-        time.sleep(rate_limit)  # Rate limiting to avoid excessive scanning
+        thread = threading.Thread(target=scan_port, args=(host, port, open_ports))
+        threads.append(thread)
+        thread.start()
+
+    # Wait for all threads to complete
+    for thread in threads:
+        thread.join()
+        
 
     logging.info(f"Scan complete. Open ports: {open_ports}")
     return open_ports
@@ -83,7 +94,10 @@ if __name__ == "__main__":
         exit(1)
 
     start_time = datetime.now()
-    open_ports = port_scanner(target_host, start_port, end_port, rate_limit=0.5)
+
+    # Run the port scanner with threading
+    open_ports = port_scanner(target_host, start_port, end_port)
+    
     end_time = datetime.now()
 
     print(f"\nScanning completed in {end_time - start_time}. Open ports: {open_ports}")
