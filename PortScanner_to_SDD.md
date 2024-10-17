@@ -1,3 +1,4 @@
+```
 import socket 
 import logging
 from datetime import datetime
@@ -79,3 +80,4 @@ if __name__ == "__main__":
 
     print(f"\nScanning completed in {end_time - start_time}. Open ports: {open_ports}")
     logging.info(f"Scan duration: {end_time - start_time}")
+```
