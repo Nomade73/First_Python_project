@@ -1,22 +1,14 @@
-import socket
+```
+import socket 
 import logging
 from datetime import datetime
 import time
-import re
-import threading 
-
 
 # Setup logging
-logging.basicConfig(filename='port_scanner.log', level=logging.INFO, 
+logging.basicConfig(filename='port_scanner.log', level=logging.INFO,  
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Regex pattern for a valid IPv4 address
-ipv4_pattern = re.compile(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
-
-
-def scan_port(host, port, open_ports):
-
-
+def scan_port(host, port):
     try:
         # Create a new socket for each port
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -39,11 +31,8 @@ def scan_port(host, port, open_ports):
         print(f"Couldn't connect to server: {host}")
         return None
 
-def port_scanner(host, start_port, end_port):
-    # Scans ports within a specified range using multi-threading.
+def port_scanner(host, start_port, end_port, rate_limit=0.5):
     open_ports = []
-    threads = []
-    
     logging.info(f"Starting scan on host: {host} from port {start_port} to {end_port}")
     print(f"Scanning {host} from port {start_port} to {end_port}...")
     
@@ -56,28 +45,20 @@ def port_scanner(host, start_port, end_port):
         print("Invalid range. Start port must be less than or equal to end port.")
         return
 
-    # Create a thread for each port scan
     for port in range(start_port, end_port + 1):
-        thread = threading.Thread(target=scan_port, args=(host, port, open_ports))
-        threads.append(thread)
-        thread.start()
-
-    # Wait for all threads to complete
-    for thread in threads:
-        thread.join()
-        
+        if scan_port(host, port):
+            print(f"Port {port} is open")
+            open_ports.append(port)
+        else:
+            print(f"Port {port} is closed")
+        time.sleep(rate_limit)  # Rate limiting to avoid excessive scanning
 
     logging.info(f"Scan complete. Open ports: {open_ports}")
     return open_ports
 
 # Main execution
 if __name__ == "__main__":
-    target_host = input("Enter the host to scan (IPv4): ")
-
-     # Check if the entered host is a valid IPv4 address
-    if not ipv4_pattern.match(target_host):
-        print("Invalid IPv4 address format. Please enter a valid IPv4 address.")
-        exit(1)
+    target_host = input("Enter the host to scan: ")
     
     try:
         # Validate IP address format or domain name
@@ -94,11 +75,9 @@ if __name__ == "__main__":
         exit(1)
 
     start_time = datetime.now()
-
-    # Run the port scanner with threading
-    open_ports = port_scanner(target_host, start_port, end_port)
-    
+    open_ports = port_scanner(target_host, start_port, end_port, rate_limit=0.5)
     end_time = datetime.now()
 
     print(f"\nScanning completed in {end_time - start_time}. Open ports: {open_ports}")
     logging.info(f"Scan duration: {end_time - start_time}")
+```
