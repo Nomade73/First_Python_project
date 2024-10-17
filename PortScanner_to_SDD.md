@@ -4,7 +4,7 @@ from datetime import datetime
 import time
 
 # Setup logging
-logging.basicConfig(filename='port_scanner.log', level=logging.INFO, 
+logging.basicConfig(filename='port_scanner.log', level=logging.INFO,  
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 def scan_port(host, port):
