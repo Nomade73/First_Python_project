@@ -44,13 +44,13 @@ Create a script that will scan an IP in different ways, as follows. Take the IP 
 2. Make the file executable:
     
 ```bash
-chmod +x ip_scanner.sh
+chmod +x ip_scanner_linux.sh
 ```
 
 4. Run the script with administrator privileges (to access network statistics):
  
 ```bash
-./ip_scanner.sh
+./ip_scanner_linux.sh
 ```
 
 ## To stop the script:
