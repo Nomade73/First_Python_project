@@ -18,6 +18,8 @@
 
 .\bandwidth_monitor.ps1
 ```
+1. This script is used to monitor network traffic (data received and transmitted) on a Windows computer and write this data to a file for further analysis.
+2. Цей скрипт використовується для моніторингу мережевого трафіку (отриманих та переданих даних) на комп'ютері з Windows і запису цих даних у файл для подальшого аналізу.
 
 ```powershell
 
