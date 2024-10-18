@@ -1,12 +1,27 @@
-## Explanation/Пояснення:
+## Bandwidth Monitor
+ - Type of Challenge: Verify Coding Knowledge
+ - Duration: 1/2 day
+ - Challenge Type : Team - Continue with same team as the previous challenge-
 
+Build a shell script that monitors network bandwidth usage on a system. It will track data sent and received through a specific network interface over a period of time, then display the results or log them to a file.
+
+
+**Features**
+1. Monitor traffic for a given network interface (e.g., eth0 or wlan0....).
+2. Calculate data transmitted and received over a defined interval (e.g., every 5 minute).
+3. Provide total bandwidth usage in bytes or kilobytes over time.
+4. Log this data and provide average, maximum, and minimum usage.
+
+## Explanation/ Пояснення:
+
+## 1. Network interface
 - **English**: This script monitors the specified network interface (e.g., eth0 for Ethernet or wlan0 for Wi-Fi), calculates the bytes sent and received over 5 minutes, and logs the data to a file.
 - **Українською**: Цей скрипт моніторить зазначений мережевий інтерфейс (наприклад, eth0 для Ethernet або wlan0 для Wi-Fi), обчислює байти, надіслані та отримані за 5 хвилин, і записує дані у файл.
 
-- **English**: The ```get_data()``` function reads the transmitted and received bytes from the network interface's statistics files.
+2. **English**: The ```get_data()``` function reads the transmitted and received bytes from the network interface's statistics files.
 - **Українською**: Функція ```get_data()``` зчитує передані та отримані байти з файлів статистики мережевого інтерфейсу.
 
-- **English**: The script ```loops indefinitely```, checking bandwidth usage every 5 minutes and logging the results.
+3. **English**: The script ```loops indefinitely```, checking bandwidth usage every 5 minutes and logging the results.
 - **Українською**: Скрипт безкінечно повторює перевірку використання трафіку кожні 5 хвилин та записує результати.
 
 ## How to run the script:
