@@ -1,15 +1,15 @@
 ## Explanation/ Пояснення:
 1. **Whois Lookup**: Performs a Whois lookup to retrieve details like netname, description, country, role, and abuse-mailbox.
-1.1 **Whois запит**: Виконує Whois запит для отримання таких деталей, як netname, description, country, role, і abuse-mailbox.
+- **Whois запит**: Виконує Whois запит для отримання таких деталей, як netname, description, country, role, і abuse-mailbox.
 
 2. **Reverse DNS Lookup**: Finds the domain name associated with the given IP address.
-2.1 **Зворотний DNS запит**: Знаходить доменне ім'я, пов'язане з вказаною IP адресою.
+- **Зворотний DNS запит**: Знаходить доменне ім'я, пов'язане з вказаною IP адресою.
 
 3. **HTTP/HTTPS Query**: Performs an HTTP and HTTPS query to check the response code from the IP.
-3.1 **HTTP/HTTPS запит**: Виконує HTTP та HTTPS запити для перевірки коду відповіді від IP.
+- **HTTP/HTTPS запит**: Виконує HTTP та HTTPS запити для перевірки коду відповіді від IP.
 
 4. **GeoLocation**: Uses a free API to retrieve information about the physical location (city, region, country) of the IP address.
-4.1 **Геолокація**: Використовує безкоштовний API для отримання інформації про фізичне місцезнаходження IP адреси (місто, регіон, країна).
+- **Геолокація**: Використовує безкоштовний API для отримання інформації про фізичне місцезнаходження IP адреси (місто, регіон, країна).
 
 ## How to run this script:
 1. Open PowerShell.
@@ -17,7 +17,7 @@
 3. Run the script with the following command:
    
 ```powershell
-.\ip_scanner.ps1
+.\ip_scanner_windows.ps1
 ````
 
 1. These scripts allow you to monitor network traffic and scan IP addresses using PowerShell on Windows.
