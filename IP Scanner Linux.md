@@ -3,27 +3,42 @@
 - **English**: The script asks the user to input an IP address and then performs several tasks: Whois lookup, Reverse DNS lookup, HTTP/HTTPS queries, and geolocation lookup.
 - **Українською**: Скрипт запитує у користувача IP адресу і виконує кілька завдань: запит Whois, зворотний DNS запит, HTTP/HTTPS запити та визначення геолокації.
 
-- **English**:
-**Whois Lookup**: The function whois_lookup() performs a Whois query using the whois command and extracts key details such as netname, description, country, role, and abuse-mailbox.
-- **Українською**:
-**Whois запит**: Функція whois_lookup() виконує запит Whois за допомогою команди whois та витягує основні дані, такі як netname, опис, країну, роль і abuse-mailbox.
+## Whois Lookup
+- **English**: The function ```whois_lookup()``` performs a Whois query using the whois command and extracts key details such as ```netname, description, country, role, and abuse-mailbox```.
+- **Українською**: Функція ```whois_lookup()``` виконує запит Whois за допомогою команди whois та витягує основні дані, такі як ```netname, опис, країну, роль і abuse-mailbox```.
 
-- **English**:
-**Reverse DNS** Lookup: The function reverse_dns_lookup() uses dig to perform a reverse DNS lookup to find domain names associated with the IP.
-- **Українською**:
-**Зворотний DNS запит**: Функція reverse_dns_lookup() використовує команду dig для виконання зворотного DNS запиту, щоб знайти доменні імена, пов'язані з IP.
+## Reverse DNS Lookup
+- **English**: The function ```reverse_dns_lookup()``` uses dig to perform a reverse DNS lookup to find domain names associated with the IP.
+- **Українською**: Функція ```reverse_dns_lookup()``` використовує команду dig для виконання зворотного DNS запиту, щоб знайти доменні імена, пов'язані з IP.
+
+## HTTP(S) Query
+- **English**: The ```functions http_query()``` and ```https_query()``` use curl to make HTTP and HTTPS requests to the IP and print the HTTP status code (such as 200 for success).
+- **Українською**: Функції ```http_query()``` та ```https_query()``` використовують команду curl для здійснення HTTP та HTTPS запитів до IP і виводять код відповіді (наприклад, 200 для успішного запиту).
+
+## GeoLocation
+- **English**: The ```geolocation_lookup()``` function uses a free geolocation API (ip-api.com) to retrieve and display the city, region, and country associated with the IP.
+- **Українською**: Функція ```geolocation_lookup()``` використовує безкоштовний API геолокації (ip-api.com), щоб отримати і відобразити місто, регіон та країну, пов'язані з IP.
 
 
-- **English**:
-**HTTP(S) Query**: The functions http_query() and https_query() use curl to make HTTP and HTTPS requests to the IP and print the HTTP status code (such as 200 for success).
-- **Українською**:
-**HTTP(S) запит**: Функції http_query() та https_query() використовують команду curl для здійснення HTTP та HTTPS запитів до IP і виводять код відповіді (наприклад, 200 для успішного запиту).
+## How script is work/ Як запустити цей скрипт:
+1. Create a file with a ```.sh``` extension, for example ```ip_scanner.sh```, aste the code provided above into the file.
+2. Make the file executable:
+3. 
+```bash
+chmod +x ip_scanner.sh
+```
 
-- **English**:
-**GeoLocation**: The geolocation_lookup() function uses a free geolocation API (ip-api.com) to retrieve and display the city, region, and country associated with the IP.
-- **Українською**:
-**Геолокація**: Функція geolocation_lookup() використовує безкоштовний API геолокації (ip-api.com), щоб отримати і відобразити місто, регіон та країну, пов'язані з IP.
+4. Run the script with administrator privileges (to access network statistics):
+ 
+```bash
+./ip_scanner.sh
+```
 
+## To stop the script:
+Press ```Ctrl+C``` in the terminal to stop the script.
+
+## What the script does:
+This script will help you perform several types of scans for an IP address, including Whois lookup, reverse DNS lookup, HTTP/HTTPS lookup, and geolocation.
 
 ```
 #!/bin/bash
