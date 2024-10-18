@@ -15,23 +15,16 @@
 1. Open PowerShell.
 2. Copy the code into a file and save it as ip_scanner_windows.ps1.
 3. Run the script with the following command:
+   
 ```powershell
 .\ip_scanner.ps1
+````
 
-Як запустити цей скрипт:
-Відкрийте PowerShell.
-Скопіюйте код у файл та збережіть його під назвою ip_scanner.ps1.
-Запустіть скрипт за допомогою команди:
+1. These scripts allow you to monitor network traffic and scan IP addresses using PowerShell on Windows.
+2. Ці скрипти дозволяють здійснювати моніторинг мережевого трафіку та сканувати IP адреси, використовуючи PowerShell у Windows.
 
 ```powershell
 
-.\ip_scanner.ps1
-
-```
-
-Ці скрипти дозволяють здійснювати моніторинг мережевого трафіку та сканувати IP адреси, використовуючи PowerShell у Windows.
-
-```
 # Get the IP address from the user
 # Отримуємо IP адресу від користувача
 $IP = Read-Host "Enter the IP address to scan"
