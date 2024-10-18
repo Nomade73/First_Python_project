@@ -23,7 +23,7 @@
 ## How script is work/ Як запустити цей скрипт:
 1. Create a file with a ```.sh``` extension, for example ```ip_scanner.sh```, aste the code provided above into the file.
 2. Make the file executable:
-3. 
+    
 ```bash
 chmod +x ip_scanner.sh
 ```
