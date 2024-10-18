@@ -10,18 +10,18 @@
 - **Українською**: Скрипт безкінечно повторює перевірку використання трафіку кожні 5 хвилин та записує результати.
 
 ## How to run the script:
-Create a file with a ```.sh``` extension, for example, ```bandwidth_monitor.sh```.
+Create a file with a ```.sh``` extension, for example, ```bandwidth_monitor_linux.sh```.
 Paste the code provided above into the file.
 1.Make the file executable:
 
 ```bash
-chmod +x bandwidth_monitor.sh
+chmod +x bandwidth_monitor_linux.sh
 ```
 
 Run the script with administrator privileges (to access network statistics):
 
 ```bash
-sudo ./bandwidth_monitor.sh
+sudo ./bandwidth_monitor_linux.sh
 ```
 ## To stop the script:
 Press ```Ctrl+C``` in the terminal to stop the script.
