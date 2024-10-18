@@ -15,7 +15,7 @@
 3. Run the script with the following command:
    
 ```powershell
-.\bandwidth_monitor.ps1
+.\bandwidth_monitor_windowd.ps1
 ```
 
 1. This script is used to monitor network traffic (data received and transmitted) on a Windows computer and write this data to a file for further analysis.
