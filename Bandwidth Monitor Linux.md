@@ -3,10 +3,10 @@
 - **English**: This script monitors the specified network interface (e.g., eth0 for Ethernet or wlan0 for Wi-Fi), calculates the bytes sent and received over 5 minutes, and logs the data to a file.
 - **Українською**: Цей скрипт моніторить зазначений мережевий інтерфейс (наприклад, eth0 для Ethernet або wlan0 для Wi-Fi), обчислює байти, надіслані та отримані за 5 хвилин, і записує дані у файл.
 
-- **English**: The get_data() function reads the transmitted and received bytes from the network interface's statistics files.
-- **Українською**: Функція get_data() зчитує передані та отримані байти з файлів статистики мережевого інтерфейсу.
+- **English**: The ```get_data()``` function reads the transmitted and received bytes from the network interface's statistics files.
+- **Українською**: Функція ```get_data()``` зчитує передані та отримані байти з файлів статистики мережевого інтерфейсу.
 
-- **English**: The script loops indefinitely, checking bandwidth usage every 5 minutes and logging the results.
+- **English**: The script ```loops indefinitely```, checking bandwidth usage every 5 minutes and logging the results.
 - **Українською**: Скрипт безкінечно повторює перевірку використання трафіку кожні 5 хвилин та записує результати.
 
 ## How to run the script:
