@@ -12,6 +12,15 @@ LOG_FILE="bandwidth_log.txt"
 # Інтервал часу між перевірками (у секундах), 5 хвилин = 300 секунд
 INTERVAL=300
 
+# Initialize values for total, average, min, and max tracking
+TOTAL_RX=0
+TOTAL_TX=0
+MAX_RX=0
+MAX_TX=0
+MIN_RX=-1
+MIN_TX=-1
+COUNT=0
+
 # Display the current state of the network interface
 # Вивести поточний стан мережевого інтерфейсу
 echo "Monitoring interface $INTERFACE every $INTERVAL seconds..."
@@ -52,10 +61,42 @@ while true; do
     RX_DIFF=$((RX_BYTES - PREV_RX))  
     TX_DIFF=$((TX_BYTES - PREV_TX))  
 
+    # Update total usage
+    TOTAL_RX=$((TOTAL_RX + RX_DIFF))
+    TOTAL_TX=$((TOTAL_TX + TX_DIFF))
+
+    # Increment the count (number of intervals)
+    COUNT=$((COUNT + 1))
+
+    # Update max and min usage for received data
+    if [ $RX_DIFF -gt $MAX_RX ]; then
+        MAX_RX=$RX_DIFF
+    fi
+    if [ $MIN_RX -eq -1 ] || [ $RX_DIFF -lt $MIN_RX ]; then
+        MIN_RX=$RX_DIFF
+    fi
+
+    # Update max and min usage for transmitted data
+    if [ $TX_DIFF -gt $MAX_TX ]; then
+        MAX_TX=$TX_DIFF
+    fi
+    if [ $MIN_TX -eq -1 ] || [ $TX_DIFF -lt $MIN_TX ]; then
+        MIN_TX=$TX_DIFF
+    fi
+
+    # Calculate average usage
+    AVG_RX=$((TOTAL_RX / COUNT))
+    AVG_TX=$((TOTAL_TX / COUNT))
+
     # Log the results to the file
     # Записати результати у файл
-    echo "$(date) - Received: $RX_DIFF bytes, Transmitted: $TX_DIFF bytes" >> "$LOG_FILE"
-    echo "$(date) - Отримано: $RX_DIFF байт, Передано: $TX_DIFF байт" >> "$LOG_FILE"
+    echo "$(date) - Interval: $COUNT" >> "$LOG_FILE"
+    echo "  Received: $RX_DIFF bytes, Transmitted: $TX_DIFF bytes" >> "$LOG_FILE"
+    echo "  Total Received: $TOTAL_RX bytes, Total Transmitted: $TOTAL_TX bytes" >> "$LOG_FILE"
+    echo "  Average Received: $AVG_RX bytes, Average Transmitted: $AVG_TX bytes" >> "$LOG_FILE"
+    echo "  Max Received: $MAX_RX bytes, Max Transmitted: $MAX_TX bytes" >> "$LOG_FILE"
+    echo "  Min Received: $MIN_RX bytes, Min Transmitted: $MIN_TX bytes" >> "$LOG_FILE"
+    echo "---------------------------------------" >> "$LOG_FILE"
 
     # Update the previous values for the next check
     # Оновити попередні значення для наступної перевірки
@@ -66,3 +107,4 @@ while true; do
     # Вивести повідомлення для користувача
     echo "Monitoring in progress... Data logged."
     echo "Моніторинг виконується... Дані записані."
+done 
